@@ -19,7 +19,7 @@ class TodoModel: Object, Mappable {
     dynamic var notes: String = ""
     dynamic var completed: Bool = false
     dynamic var synced: Bool = false
-
+    
     
     required convenience init?(map: Map) {
         self.init()

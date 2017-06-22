@@ -11,7 +11,7 @@ import ObjectMapper
 import Alamofire
 import ObjectMapper
 
-class LoginResponse: Mappable {
+class RegisterResponse: Mappable {
     
     var success: Bool = false
     
@@ -24,12 +24,12 @@ class LoginResponse: Mappable {
     }
 }
 
-class LoginManager {
-    class func logIn(userName: String,
+class RegisterManager {
+    class func register(userName: String,
                      password: String,
-                     _ completion: @escaping (_ responseData: LoginResponse?, _ error: Bool?) -> ()) {
+                     _ completion: @escaping (_ responseData: RegisterResponse?, _ error: Bool?) -> ()) {
         
-        let url = URL(string: "http://localhost:8080/login")!
+        let url = URL(string: "http://localhost:8080/register")!
         
         let headers: HTTPHeaders = [
             "userName": userName,
@@ -39,10 +39,10 @@ class LoginManager {
         WebServiceManger.sendRequest(requestHeaders: headers,
                                      url: url,
                                      requestMethod: .get,
-                                     responseType: LoginResponse.self) {
-                                        (responseData: LoginResponse?, error: Bool?) in
+                                     responseType: RegisterResponse.self) {
+                                        (responseData: RegisterResponse?, error: Bool?) in
                                         completion(responseData, error)
         }
     }
-
+    
 }

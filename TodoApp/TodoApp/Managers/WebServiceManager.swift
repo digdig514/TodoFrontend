@@ -42,11 +42,11 @@ class WebServiceManger {
     }
     
     class func sendRequest<T: Mappable>(requestHeaders: HTTPHeaders? = nil,
-                                        url: URL,
-                                        requestMethod: Alamofire.HTTPMethod,
-                                        responseType: T.Type,
-                                        completion: @escaping (_ responseData: T?,
-                                                               _ error: Bool?) -> Void) {
+                           url: URL,
+                           requestMethod: Alamofire.HTTPMethod,
+                           responseType: T.Type,
+                           completion: @escaping (_ responseData: T?,
+        _ error: Bool?) -> Void) {
         
         let queue = DispatchQueue(label: "manager-response-queue", attributes: DispatchQueue.Attributes.concurrent)
         
@@ -57,7 +57,7 @@ class WebServiceManger {
                           encoding: URLEncoding.default,
                           headers: requestHeaders)
             .responseObject(queue: queue) {
-            (response: DataResponse<T>) in
+                (response: DataResponse<T>) in
                 print(response.request!)  // original URL request
                 print(response.response!) // URL response
                 print(response.result)   // result of response serialization
@@ -73,6 +73,6 @@ class WebServiceManger {
                 } else {
                     completion(nil, true)
                 }
-            }
+        }
     }
 }
